@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import java.util.TreeMap;
 
 /**
  * A service class that provides statistical operations and data analysis
@@ -45,6 +46,25 @@ public class PeopleStatistics {
                                 Collectors.averagingInt(Person::age),
                                         avg -> Math.round(avg * 100.0) / 100.0)
                         ));
+    }
+    /**
+     * Returns a map of each age group to the count of people in that group for the country of New Zealand.
+     *
+     * @param people list of people
+     * @return map from age group to count of people in that group for the country of New Zealand, or {@code null} if none
+     */
+    public static TreeMap<String, Long> findAgeGroupForNewZealand(List<Person> people) {
+        return people.stream()
+                .filter(p -> "New Zealand".equals(p.country()))
+                .collect(Collectors.groupingBy(
+                        p -> {
+                            int lower = (p.age() / 10) * 10;
+                            int upper = lower + 9;
+                            return lower + "-" + upper;
+                        },
+                        TreeMap::new,
+                        Collectors.counting()
+                ));
     }
 
 
