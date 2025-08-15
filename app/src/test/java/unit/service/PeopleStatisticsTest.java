@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import app.entity.Person;
 import app.service.PeopleStatistics;
-import app.service.PersonStatistics;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
