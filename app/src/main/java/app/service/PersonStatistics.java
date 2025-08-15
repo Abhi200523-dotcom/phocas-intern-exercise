@@ -24,8 +24,8 @@ public class PersonStatistics {
     public static Optional<String> findOldestName(List<Person> people) {
         return people.stream()
                 .max(Comparator.comparingInt(Person::age)
-                        .thenComparing(Person::firstName)
-                        .thenComparing(Person::lastName))
+                        .thenComparing(Person::firstName,Comparator.reverseOrder())
+                        .thenComparing(Person::lastName,Comparator.reverseOrder()))
                 .map(Person -> Person.firstName() + " " + Person.lastName());
     }
 
