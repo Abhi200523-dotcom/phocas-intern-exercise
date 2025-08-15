@@ -2,7 +2,9 @@ package app.service;
 
 import app.entity.Person;
 import java.util.List;
+import java.util.Map;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 /**
  * A service class that provides statistical operations and data analysis
@@ -28,4 +30,22 @@ public class PeopleStatistics {
                 .map(a -> Math.round(a * 100.0) / 100.0)
                 .findFirst();
     }
+
+    /**
+     * Returns a map of each country to average age in that country.
+     *
+     * @param people list of people
+     * @return map from country to average age of that country, or {@code null} if none
+     */
+    public static Map<String, Double> findAverageAgeByCountry(List<Person> people) {
+        return people.stream()
+                .collect(Collectors.groupingBy(
+                        Person::country,
+                        Collectors.collectingAndThen(
+                                Collectors.averagingInt(Person::age),
+                                        avg -> Math.round(avg * 100.0) / 100.0)
+                        ));
+    }
+
+
 }
