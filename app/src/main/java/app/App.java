@@ -4,6 +4,7 @@
 package app;
 import app.entity.Person;
 import app.io.LoadPeople;
+import app.service.PeopleStatistics;
 import app.service.PersonStatistics;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -18,6 +19,11 @@ public class App {
         PersonStatistics.findOldestName(people)
                 .ifPresentOrElse(
                         name -> System.out.println("Oldest person: " + name),
+                        () -> System.out.println("No data available")
+                );
+        PeopleStatistics.findAverageAge(people)
+                .ifPresentOrElse(
+                        age -> System.out.println("Average age of data set: " + age ),
                         () -> System.out.println("No data available")
                 );
     }

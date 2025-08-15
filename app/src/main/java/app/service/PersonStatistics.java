@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * A service class that provides statistical operations and data analysis
- * on a list of {@code Person} objects.
+ * which consists of a single person.
  */
 public class PersonStatistics {
     /**
