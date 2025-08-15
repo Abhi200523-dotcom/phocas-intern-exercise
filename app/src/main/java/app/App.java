@@ -28,10 +28,14 @@ public class App {
                         () -> System.out.println("No data available"+ "\n")
                 );
         System.out.println("Youngest person by country: ");
-        Map<String, String> map = PersonStatistics.findYoungestNameByCountry(people);
-        map.forEach((country, name) ->
+        Map<String, String> youngestAgeMap = PersonStatistics.findYoungestNameByCountry(people);
+        youngestAgeMap.forEach((country, name) ->
                 System.out.println(country + ": " + name));
 
+        System.out.println("\n" + "Average age by country: ");
+        Map<String, Double> averageAgeMap = PeopleStatistics.findAverageAgeByCountry(people);
+        averageAgeMap.forEach((country, age) ->
+                System.out.println(country + ": " + age));
 
     }
 }
