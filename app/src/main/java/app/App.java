@@ -9,6 +9,7 @@ import app.service.PersonStatistics;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 public class App {
 
@@ -18,13 +19,19 @@ public class App {
         List<Person> people = loader.load(Paths.get("interndata.ndjson"));
         PersonStatistics.findOldestName(people)
                 .ifPresentOrElse(
-                        name -> System.out.println("Oldest person: " + name),
-                        () -> System.out.println("No data available")
+                        name -> System.out.println("\n" +"Oldest person: " + name + "\n"),
+                        () -> System.out.println("No data available"+ "\n")
                 );
         PeopleStatistics.findAverageAge(people)
                 .ifPresentOrElse(
-                        age -> System.out.println("Average age of data set: " + age ),
-                        () -> System.out.println("No data available")
+                        age -> System.out.println("Average age of data set: " + age + "\n" ),
+                        () -> System.out.println("No data available"+ "\n")
                 );
+        System.out.println("Youngest person by country: ");
+        Map<String, String> map = PersonStatistics.findYoungestNameByCountry(people);
+        map.forEach((country, name) ->
+                System.out.println(country + ": " + name));
+
+
     }
 }
