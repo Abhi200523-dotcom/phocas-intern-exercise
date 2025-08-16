@@ -7,6 +7,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
 }
 
@@ -37,7 +38,13 @@ application {
     mainClass = 'app.App'
 }
 
-tasks.named('test') {
-    //Use JUnit Platform for unit tests.
+test {
     useJUnitPlatform()
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
+
+tasks.named('run') {
+    workingDir = projectDir
 }

@@ -13,7 +13,17 @@ import java.util.Map;
 
 public class App {
 
-
+    /**
+     * Entry point for the application.
+     * <p>
+     * Loads people data from a file, calculates various statistics
+     * (oldest person, average ages, youngest per country, etc.),
+     * and prints them to the console.
+     * </p>
+     *
+     * @param args command-line arguments; not used in this application
+     * @throws IOException if the people data file cannot be read
+     */
     public static void main(String[] args) throws IOException {
         LoadPeople loader = new LoadPeople();
         List<Person> people = loader.load(Paths.get("interndata.ndjson"));
