@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.Person;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
@@ -62,7 +63,7 @@ public class PeopleStatistics {
                             int upper = lower + 9;
                             return lower + "-" + upper;
                         },
-                        TreeMap::new,
+                        () -> new TreeMap<>(Comparator.comparingInt(s -> Integer.parseInt(s.split("-")[0]))),
                         Collectors.counting()
                 ));
     }

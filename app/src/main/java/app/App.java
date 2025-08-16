@@ -37,5 +37,10 @@ public class App {
         averageAgeMap.forEach((country, age) ->
                 System.out.println(country + ": " + age));
 
+        System.out.println("\n" + "Count of people in age group in New Zealand: ");
+        Map<String, Long> ageGroupMap = PeopleStatistics.findAgeGroupForNewZealand(people);
+        ageGroupMap.forEach((ageGroup, count) ->
+                System.out.println(ageGroup + ": " + count));
+
     }
 }

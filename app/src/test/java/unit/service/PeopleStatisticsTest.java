@@ -67,7 +67,8 @@ public class PeopleStatisticsTest {
 
 
     @Test
-    public void findCountOfPeopleInAgeGroupInNewZealand_emptyList_returnsEmptyMap() {
+    public void findCountOfPeopleInAgeGroupInNewZealand_validData_returnsCountOfPeopleInAgeGroupInNewZealandSorted() {
+
         List<Person> people = new ArrayList<>();
         for(int i = 0; i < 7; i++) {
             people.add(new Person("John" + i, "Doe" + i, "New Zealand", 20 + i));
@@ -76,14 +77,18 @@ public class PeopleStatisticsTest {
             people.add(new Person("Jane" + i, "Doe" + i, "New Zealand", 10 + i));
         }
         for(int i = 0; i < 5; i++) {
-            people.add(new Person("Daniel" + i, "Doe" + i, "Nepal", 20 + i));
+            people.add(new Person("Daniel" + i, "Doe" + i, "South Africa", 20 + i));
+        }
+        for(int i = 0; i < 5; i++) {
+            people.add(new Person("Abhisekh" + i, "Chand" + i, "New Zealand", 100 + i));
         }
 
         Map<String, Long> actual = PeopleStatistics.findAgeGroupForNewZealand(people);
 
         Map<String, Long> expected = Map.of(
                 "10-19",   5L,
-                "20-29", 7L
+                "20-29", 7L,
+                "100-109",5L
         );
 
         assertEquals(expected.size(), actual.size());
@@ -94,7 +99,7 @@ public class PeopleStatisticsTest {
     }
 
     @Test
-    public void findCountOfPeopleInAgeGroupInNewZealand_validData_returnsCountOfPeopleInAgeGroupInNewZealand() {
+    public void findCountOfPeopleInAgeGroupInNewZealand_emptyList_returnsEmptyMap() {
         TreeMap<String, Long> actual = PeopleStatistics.findAgeGroupForNewZealand(Collections.emptyList());
         assertTrue(actual.isEmpty());
     }
